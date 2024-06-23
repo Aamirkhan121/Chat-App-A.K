@@ -4,8 +4,9 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.js";
 import messageRoutes from "./routes/message_auth.js";
 import userRoutes from "./routes/user_auth.js";
-import connectTOMongoDB from "./db/connectToMongoDb.js";
-const app=express();
+import connectTOMongoDB from "./db/connectToMongoDB.js";
+import { app, server } from "./socket/socket.js";
+
 const PORT=process.env.PORT||5000;
 dotenv.config();
 
@@ -20,7 +21,7 @@ app.use("/api/users",userRoutes)
 //     res.status(200).send("Hello Aamir!")
 // })
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     connectTOMongoDB()
      console.log(`Server Running on http://localhost:${PORT}`)
     })

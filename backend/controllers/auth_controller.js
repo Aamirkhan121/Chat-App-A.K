@@ -57,8 +57,8 @@ const login =async (req,res)=>{
     try {
         const {username,password}=req.body;
         const user=await UserModel.findOne({username})
-        const isPasswordCorrect = await bcryptjs.compare(password, user?.hashedPassword || "");
-        if (!user || isPasswordCorrect) {
+        const isPasswordCorrect = await bcryptjs.compare(password, user?.password || "");
+        if (!user || !isPasswordCorrect) {
             return res.status(400).json({error:"Invalid username or password"})
         }
         generateTokenAndSetCookie(user._id,res)
