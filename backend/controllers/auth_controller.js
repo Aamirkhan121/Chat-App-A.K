@@ -18,7 +18,7 @@ const signup =async (req,res)=>{
     //hash password here start
 
     const salt =await bcryptjs.genSalt(10)
-    const hashesPassword= await bcryptjs.hash(password,salt)
+    const hashedPassword= await bcryptjs.hash(password,salt)
 
     //hash password here end
 
@@ -29,7 +29,7 @@ const signup =async (req,res)=>{
     const newUser=new UserModel({
         fullName,
         username,
-        password:hashesPassword,
+        password:hashedPassword,
         gender,
         profilePic:gender==="male"?boyProfilePic:girlProfilePic,
     })
@@ -57,7 +57,7 @@ const login =async (req,res)=>{
     try {
         const {username,password}=req.body;
         const user=await UserModel.findOne({username})
-        const isPasswordCorrect = await bcryptjs.compare(password, user?.hashesPassword || "");
+        const isPasswordCorrect = await bcryptjs.compare(password, user?.hashedPassword || "");
         if (!user || isPasswordCorrect) {
             return res.status(400).json({error:"Invalid username or password"})
         }
