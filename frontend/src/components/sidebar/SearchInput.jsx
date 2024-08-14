@@ -27,9 +27,9 @@ const{conversations}=useGetConversations()
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex items-center gap-2'>
-      <input type="text" placeholder='Search...' className='input input-bordered rounded-full' value={search} onChange={(e)=>setSearch(e.target.value)} />
-      <button type='submit' className='btn btn-circle bg-sky-500 text-white'><FaSearch className='w-6 h-6 outline-none'/></button>
+    <form onSubmit={handleSubmit} className='flex  items-center gap-2'>
+      <input type="text" placeholder='Search...' className='input xs:max-w-[100px] input-bordered rounded-full' value={search} onChange={(e)=>setSearch(e.target.value)} />
+      <button type='submit' className='btn  btn-circle mr-20 bg-sky-500 text-white'><FaSearch className='w-6 h-6 xs:max-w-[20px] outline-none'/></button>
     </form>
   )
 }
